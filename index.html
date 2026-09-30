@@ -12,14 +12,15 @@
   <title>Точки — игра на листе в клетку</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <script type="module" crossorigin src="./assets/index-Vv0lUc09.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DWY06xa9.css">
+  <script type="module" crossorigin src="./assets/index-DsmY6O5N.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BaZYf3nA.css">
 </head>
 <body>
   <header>
     <h1>● Точки</h1>
     <span id="fieldInfo" class="muted"></span>
     <span class="tools">
+      <button id="btnSound" class="icon-btn" type="button" title="Звук"></button>
       <button id="btnRules" class="icon-btn" type="button">? Правила</button>
       <button id="btnNewGame" class="icon-btn new" type="button">＋ Новая игра</button>
     </span>
@@ -99,6 +100,13 @@
       <p>Поле двигается перетаскиванием, масштаб — колесом мыши или двумя пальцами.</p>
       <div class="dlg-buttons"><button value="close" class="primary">Понятно</button></div>
     </form>
+  </dialog>
+  <dialog id="askDlg" class="card ask">
+    <p id="askText"></p>
+    <div class="dlg-buttons">
+      <button id="askNo" type="button">Отмена</button>
+      <button id="askYes" type="button" class="primary">Да</button>
+    </div>
   </dialog>
 </body>
 </html>
