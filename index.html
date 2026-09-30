@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090d16">
+  <meta name="description" content="Точки — классическая игра на листе в клетку: окружайте точки соперника. Против бота, вдвоём на одном устройстве или онлайн по коду приглашения, с часами или без, на поле любого размера или бесконечном.">
+  <meta name="keywords" content="Точки, игра Точки, игра в точки, Dots, Kropki, настольная игра, онлайн">
+  <meta property="og:title" content="Точки — игра на листе в клетку">
+  <meta property="og:description" content="Окружайте точки соперника. Против бота, вдвоём или онлайн по коду, поле любого размера или бесконечное.">
+  <meta property="og:type" content="website">
+  <title>Точки — игра на листе в клетку</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <script type="module" crossorigin src="./assets/index-Vv0lUc09.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DWY06xa9.css">
+</head>
+<body>
+  <header>
+    <h1>● Точки</h1>
+    <span id="fieldInfo" class="muted"></span>
+    <span class="tools">
+      <button id="btnRules" class="icon-btn" type="button">? Правила</button>
+      <button id="btnNewGame" class="icon-btn new" type="button">＋ Новая игра</button>
+    </span>
+  </header>
+
+  <main class="play">
+    <div id="onlineBar" class="online-bar" hidden></div>
+    <div id="score" class="score"></div>
+    <canvas id="board" role="img" aria-label="Игровое поле"></canvas>
+    <div id="status" class="status" aria-live="polite"></div>
+    <div class="actions">
+      <button id="btnUndo">↩ Отмена</button>
+      <button id="btnFit">⤢ Всё поле</button>
+      <button id="btnEnd">🏁 Закончить</button>
+      <button id="btnAccept" class="accent" hidden>✔ Согласиться</button>
+      <button id="btnDecline" hidden>✖ Продолжить игру</button>
+      <button id="btnResign" hidden>🏳 Сдаться</button>
+      <button id="btnRematch" class="accent" hidden>🔁 Реванш</button>
+    </div>
+  </main>
+
+  <dialog id="newDlg" class="card">
+    <form method="dialog">
+      <h2>Новая игра</h2>
+      <div class="label">Режим</div>
+      <div id="optMode" class="chips"></div>
+
+      <div id="onlineOptions" hidden>
+        <div class="name-row">Ваше имя: <b id="myName"></b> <button id="btnDice" type="button" class="chip" title="Другое имя">🎲</button></div>
+        <div class="label">Есть код приглашения?</div>
+        <div class="join-row">
+          <input id="joinCode" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="K7Q2PX или ссылка">
+          <button id="btnJoin" type="button">Войти</button>
+        </div>
+        <div class="label or">Или создайте свою партию:</div>
+      </div>
+
+      <div class="label">Размер поля</div>
+      <div id="optSize" class="chips"></div>
+      <div id="customSize" class="size-row" hidden>
+        <input id="optW" type="number" min="5" max="99" inputmode="numeric" aria-label="Ширина"> ×
+        <input id="optH" type="number" min="5" max="99" inputmode="numeric" aria-label="Высота">
+      </div>
+      <p id="infNote" class="muted help-note" hidden>Поле без краёв: точку можно ставить не дальше 5 клеток от уже стоящих, и поле растёт вслед за игрой.</p>
+
+      <div id="botOptions" hidden>
+        <div class="label">Соперник</div>
+        <div id="optLevel" class="chips"></div>
+        <p id="levelNote" class="muted help-note"></p>
+      </div>
+
+      <div id="clockOptions" hidden>
+        <div class="label">Контроль времени <span class="muted">(минуты на партию + секунды за ход)</span></div>
+        <div id="optClock" class="chips"></div>
+      </div>
+
+      <div id="colorOptions" hidden>
+        <div class="label">Ваш цвет</div>
+        <div id="optColor" class="chips"></div>
+      </div>
+
+      <div class="dlg-buttons">
+        <button id="btnCancel" type="button">Отмена</button>
+        <button id="btnNew" type="button" class="primary">▶ Начать</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="rulesDlg" class="card rules">
+    <form method="dialog">
+      <h2>Правила</h2>
+      <p>Игроки по очереди ставят точки на пересечения линий, <span class="r">красные</span> ходят первыми.</p>
+      <p>Замкнутая цепочка своих точек (соседних по линиям и по диагонали) вокруг точек соперника окружает их: область внутри становится вашей, ставить туда больше нельзя, а каждая окружённая точка — очко.</p>
+      <p>Пустая окружённая область — «домик»: точка соперника, поставленная в него, сразу окружается. Край поля окружать не помогает.</p>
+      <p>Игра кончается, когда поле заполнено, кто-то сдался, у кого-то кончилось время или игроки согласились закончить; побеждает тот, кто окружил больше точек.</p>
+      <p>Часы: у каждого свой запас времени, после каждого хода добавляются секунды; часы идут с третьего хода.</p>
+      <p>Поле двигается перетаскиванием, масштаб — колесом мыши или двумя пальцами.</p>
+      <div class="dlg-buttons"><button value="close" class="primary">Понятно</button></div>
+    </form>
+  </dialog>
+</body>
+</html>
