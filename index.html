@@ -12,8 +12,8 @@
   <title>Точки — игра на листе в клетку</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <script type="module" crossorigin src="./assets/index-BdB1qzMR.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-BaZYf3nA.css">
+  <script type="module" crossorigin src="./assets/index-CtJO2cNl.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-D7uEYhI-.css">
 </head>
 <body>
   <header>
@@ -42,6 +42,14 @@
       <button id="btnRematch" class="accent" hidden>🔁 Реванш</button>
     </div>
   </main>
+
+  <section id="about" class="card about">
+    <h2>Боты и их сила</h2>
+    <p class="muted">Рейтинг ЭЛО каждого уровня на разных полях: боты сыграли друг с другом сотни партий. <b>Лёгкий бот = 1000.</b> Разница в 100 означает, что сильнейший набирает около 64 % очков, в 200 — около 76 %, в 400 — около 91 %. «—» — на этом поле ещё не измеряли.</p>
+    <div class="table-wrap"><table id="ratings"></table></div>
+    <p id="ratingsNote" class="muted help-note"></p>
+    <div id="levelsInfo"></div>
+  </section>
 
   <dialog id="newDlg" class="card">
     <form method="dialog">
